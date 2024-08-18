@@ -15,4 +15,12 @@ model User {
   email    String  @unique
   name     String?
   password String
+  cases    Cases[]
+}
+
+model Cases {
+  id       String  @id @default(cuid())
+  name     String?
+  authorId String
+  author   User    @relation(fields: [authorId], references: [id])
 }
