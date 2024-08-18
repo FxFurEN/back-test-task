@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { CreateCaseDto, UpdateCaseDto } from 'src/dto/cases.dto';
 import { CasesService } from './cases.service';
@@ -20,8 +21,11 @@ export class CasesController {
   }
 
   @Get()
-  async findAll() {
-    return this.casesService.findAll();
+  async findAll(@Query('authorId') authorId: string) {
+    if (!authorId) {
+      throw new Error('Author ID is required');
+    }
+    return this.casesService.findAll(authorId);
   }
 
   @Get(':id')

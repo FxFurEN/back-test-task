@@ -19,8 +19,10 @@ export class CasesService {
     });
   }
 
-  async findAll() {
-    return this.prisma.cases.findMany();
+  async findAll(authorId: string) {
+    return this.prisma.cases.findMany({
+      where: { authorId },
+    });
   }
 
   async findOne(id: string) {
