@@ -41,4 +41,14 @@ export class UserService {
       },
     });
   }
+
+  async findAll() {
+    return this.prisma.user.findMany();
+  }
+
+  async findUserTasks(userId: string) {
+    return this.prisma.cases.findMany({
+      where: { authorId: userId },
+    });
+  }
 }

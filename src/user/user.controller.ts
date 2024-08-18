@@ -11,4 +11,14 @@ export class UserController {
   async getUserProfile(@Param('id') id: string) {
     return await this.userService.findById(id);
   }
+
+  @Get()
+  async findAll() {
+    return this.userService.findAll();
+  }
+
+  @Get(':id')
+  async findUserTasks(@Param('id') id: string) {
+    return this.userService.findUserTasks(id);
+  }
 }
